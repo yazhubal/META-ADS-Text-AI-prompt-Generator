@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,12 +47,54 @@
             background: #005fa3;
             color: #fff;
         }
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: #222;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            margin-bottom: 25px;
+        }
+        .lang-btn {
+            background: #333;
+            color: #888;
+            border: 1px solid #444;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            width: auto;
+            margin-top: 0;
+            transition: 0.2s;
+        }
+        .lang-btn:hover {
+            background: #444;
+            color: #fff;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>META ADS Text Prompt Generator</h1>
+
+    <div class="language-selector" id="langSelector">
+        <button class="lang-btn active" onclick="setLanguage('EN', this)">English</button>
+        <button class="lang-btn" onclick="setLanguage('DE', this)">German</button>
+        <button class="lang-btn" onclick="setLanguage('FR', this)">French</button>
+        <button class="lang-btn" onclick="setLanguage('ES', this)">Spanish</button>
+        <button class="lang-btn" onclick="setLanguage('IT', this)">Italian</button>
+        <button class="lang-btn" onclick="setLanguage('PL', this)">Polish</button>
+    </div>
     
     <div class="grid">
         <div class="form-group">
@@ -107,15 +150,99 @@
 
 
 <script>
+let currentLanguage = 'EN';
+
+const TRANSLATIONS = {
+    EN: {
+        role: "Senior META Performance Copywriter. You have 10+ years of experience crafting high-converting ad copy for the powersports industry. Your task is to create compelling, concise, and conversion-focused ad copy based on the provided campaign data.",
+        industry: "Powersports / Motorbikes",
+        requirements: [
+            "Create 3 distinct ad versions (hook-driven, benefit-focused) based on the campaign data.",
+            "Primary Text: Keep the most important message in first 125 chars. Text can be longer. Mobile cuts off fast, so lead with the punch. Problem + Benefit + CTA.",
+            "Headline: Max 40 chars, make it benefit driven and compelling. Clear offer or payoff.",
+            "Description: Max 30 chars. Trust booster or secondary benefit. Not always needed but can help.",
+            "No emojis, no clichés, no corporate talk, no fluff. Be direct, clear, and persuasive. Focus on the unique value and offer. Use power words and emotional triggers relevant to powersports enthusiasts.",
+            "IMPORTANT: All ad content must be written in English."
+        ]
+    },
+    DE: {
+        role: "Senior META Performance Copywriter. Sie verfügen über mehr als 10 Jahre Erfahrung in der Erstellung von hochkonvertierenden Anzeigentexten für die Powersports-Branche. Ihre Aufgabe ist es, überzeugende, prägnante und konversionsorientierte Anzeigentexten auf der Grundlage der bereitgestellten Kampagnendaten zu erstellen.",
+        industry: "Motorsport / Motorräder",
+        requirements: [
+            "Erstellen Sie 3 verschiedene Anzeigenversionen (Hook-basiert, nutzenorientiert) auf der Grundlage der Kampagnendaten.",
+            "Primärer Text: Halten Sie die wichtigste Botschaft in den ersten 125 Zeichen. Der Text kann länger sein. Auf dem Handy wird der Text schnell abgeschnitten, also führen Sie mit dem Punch. Problem + Nutzen + CTA.",
+            "Schlagzeile: Maximal 40 Zeichen, nutzenorientiert und überzeugend gestaltet. Klares Angebot oder Auszahlung.",
+            "Beschreibung: Maximal 30 Zeichen. Vertrauensbooster oder sekundärer Vorteil. Nicht immer erforderlich, kann aber helfen.",
+            "Keine Emojis, keine Klischees, kein Firmensprech, kein unnötiges Gerede. Seien Sie direkt, klar und überzeugend. Konzentrieren Sie sich auf den einzigartigen Wert und das Angebot. Verwenden Sie Power-Wörter und emotionale Trigger, die für Powersports-Enthusiasten relevant sind.",
+            "WICHTIG: Alle Werbeinhalte müssen in deutscher Sprache verfasst sein."
+        ]
+    },
+    FR: {
+        role: "Concepteur-rédacteur Senior META Performance. Vous avez plus de 10 ans d'expérience dans la rédaction de textes publicitaires à fort taux de conversion pour l'industrie des sports motorisés. Votre tâche consiste à créer des textes publicitaires convaincants, concis et axés sur la conversion en fonction des données de campagne fournies.",
+        industry: "Sports motorisés / Motos",
+        requirements: [
+            "Créez 3 versions publicitaires distinctes (basées sur l'accroche, axées sur les bénéfices) en fonction des données de la campagne.",
+            "Texte principal : Gardez le message le plus important dans les 125 premiers caractères. Le texte peut être plus long. Le mobile coupe rapidement, alors commencez par l'essentiel. Problème + Bénéfice + CTA.",
+            "Titre : Max 40 caractères, doit être axé sur les bénéfices et convaincant. Offre claire ou résultat.",
+            "Description : Max 30 caractères. Élément de réassurance ou bénéfice secondaire. Pas toujours nécessaire mais peut aider.",
+            "Pas d'emojis, pas de clichés, pas de discours d'entreprise, pas de fioritures. Soyez direct, clair et persuasif. Concentrez-vous sur la valeur unique et l'offre. Utilisez des mots puissants et des déclencheurs émotionnels pertinents pour les passionnés de sports motorisés.",
+            "IMPORTANT : Tout le contenu publicitaire doit être rédigé en français."
+        ]
+    },
+    ES: {
+        role: "Senior META Performance Copywriter. Tienes más de 10 años de experiencia en la redacción de textos publicitarios de alta conversión para la industria de los deportes de motor. Tu tarea es crear textos publicitarios convincentes, concisos y centrados en la conversión basados en los datos de campaña proporcionados.",
+        industry: "Deportes de motor / Motocicletas",
+        requirements: [
+            "Crea 3 versiones de anuncios distintas (basadas en ganchos, centradas en beneficios) basadas en los datos de la campaña.",
+            "Texto principal: Mantén el mensaje más importante en los primeros 125 caracteres. El texto puede ser más largo. En móviles se corta rápido, así que empieza con fuerza. Problema + Beneficio + CTA.",
+            "Título: Máximo 40 caracteres, orientado a beneficios y convincente. Oferta clara o recompensa.",
+            "Descripción: Máximo 30 caracteres. Refuerzo de confianza o beneficio secundario. No siempre es necesario pero puede ayudar.",
+            "Sin emojis, sin clichés, sin lenguaje corporativo, sin relleno. Sé directo, claro y persuasivo. Céntrate en el valor único y la oferta. Utiliza palabras de poder y disparadores emocionales relevantes para los entusiastas de los deportes de motor.",
+            "IMPORTANTE: Todo el contenido publicitario debe estar redactado en español."
+        ]
+    },
+    IT: {
+        role: "Senior META Performance Copywriter. Hai oltre 10 anni di esperienza nella creazione di testi pubblicitari ad alta conversione per il settore dei motori. Il tuo compito è creare testi pubblicitari convincenti, concisi e focalizzati sulla conversione basati sui dati della campagna forniti.",
+        industry: "Motori / Motociclette",
+        requirements: [
+            "Crea 3 versioni di annunci distinti (basati su gancio, focalizzati sui benefici) basati sulla campagna.",
+            "Testo principale: Mantieni il messaggio più importante nei primi 125 caratteri. Il testo può essere più lungo. Sui dispositivi mobili viene tagliato velocemente, quindi vai dritto al punto. Problema + Beneficio + CTA.",
+            "Titolo: Max 40 caratteri, orientato ai benefici e convincente. Offerta chiara o vantaggio.",
+            "Descrizione: Max 30 caratteri. Booster di fiducia o beneficio secondario. Non sempre necessario ma può aiutare.",
+            "Niente emoji, niente cliché, niente linguaggio aziendale, niente fronzoli. Sii diretto, chiaro e persuasivo. Concentrati sul valore unico e sull'offerta. Usa parole forti e stimoli emotivi rilevanti per gli appassionati di motori.",
+            "IMPORTANTE: Tutti i contenuti pubblicitari devono essere redatti in italiano."
+        ]
+    },
+    PL: {
+        role: "Senior META Performance Copywriter. Masz ponad 10 lat doświadczenia w tworzeniu wysokokonwertujących tekstów reklamowych dla branży sportów motorowych. Twoim zadaniem jest stworzenie przekonujących, zwięzłych i skoncentrowanych na konwersji tekstów reklamowych na podstawie dostarczonych danych kampanii.",
+        industry: "Sporty motorowe / Motocykle",
+        requirements: [
+            "Stwórz 3 różne wersje reklam (oparte na haczyku, skoncentrowane na korzyściach) na podstawie danych kampanii.",
+            "Tekst główny: Zachowaj najważniejszy przekaz w pierwszych 125 znakach. Tekst może być dłuższy. Na urządzeniach mobilnych tekst jest szybko ucinany, więc zacznij od konkretu. Problem + Korzyść + CTA.",
+            "Nagłówek: Maksymalnie 40 znaków, powinien być oparty na korzyściach i przekonujący. Jasna oferta lub korzyść.",
+            "Opis: Maksymalnie 30 znaków. Budowanie zaufania lub dodatkowa korzyść. Nie zawsze potrzebny, ale może pomóc.",
+            "Bez emoji, bez kliszy, bez korpomowy, bez lania wody. Bądź bezpośredni, jasny i przekonujący. Skup się na unikalnej wartości i ofercie. Używaj słów mocy i wyzwalaczy emocjonalnych istotnych dla entuzjastów sportów motorowych.",
+            "WAŻNE: Wszystkie treści reklamowe muszą być przygotowane w języku polskim."
+        ]
+    }
+};
+
+function setLanguage(lang, btn) {
+    currentLanguage = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
 function getSelected(containerId) {
     const checkboxes = document.querySelectorAll(`#${containerId} input:checked`);
     return Array.from(checkboxes).map(cb => cb.value);
 }
 
 function generateJSON() {
+    const translation = TRANSLATIONS[currentLanguage];
     const data = {
-        role: "Senior META Performance Copywriter. You have 10+ years of experience crafting high-converting ad copy for the powersports industry. Your task is to create compelling, concise, and conversion-focused ad copy based on the provided campaign data.",
-        industry: "Powersports / Motorbikes",
+        role: translation.role,
+        industry: translation.industry,
         campaign_data: {
             brand: document.getElementById('brand').value,
             product: document.getElementById('product').value,
@@ -124,13 +251,7 @@ function generateJSON() {
             objective: getSelected('objGroup'),
             offer: document.getElementById('offer').value
         },
-        requirements: [
-            "Create 3 distinct ad versions (hook-driven, benefit-focused) based on the campaign data.",
-            "Primary Text: Keep the most important message in first 125 chars. Text can be longer. Mobile cuts off fast, so lead with the punch. Problem + Benefit + CTA.",
-            "Headline: Max 40 chars, make it benefit driven and compelling. Clear offer or payoff.",
-            "Description: Max 30 chars. Trust booster or secondary benefit. Not always needed but can help.",
-            "No emojis, no clichés, no corporate talk, no fluff. Be direct, clear, and persuasive. Focus on the unique value and offer. Use power words and emotional triggers relevant to powersports enthusiasts.",
-        ]
+        requirements: translation.requirements
     };
 
     document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 4);
