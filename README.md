@@ -1,18 +1,18 @@
 # META ADS Text AI Prompt Generator
 
-🚀 **META ADS Text AI Prompt Generator** helps marketers and advertisers generate structured AI prompts in **JSON format** for Meta (Facebook & Instagram) advertising copy.
+🚀 **META ADS Text AI Prompt Generator** is a specialized tool for marketers and advertisers to generate high-performance AI prompts for Meta (Facebook & Instagram) advertising. It creates structured **JSON prompts** tailored for senior copywriters and AI models like ChatGPT, Claude, or Gemini.
 
-This project speeds up ad creation workflows by producing ready-to-use prompt templates for AI models (ChatGPT, Claude, etc.).
+The tool is specifically optimized for the **Powersports and Enthusiast industries** (Motorbikes, Enduro, etc.), incorporating professional marketing psychology and conversion-focused frameworks.
 
 ---
 
 ## ✨ Features
 
-- Automatic ad text prompt generation
-- Outputs structured **JSON prompt format**
-- Built for Meta Ads campaigns (Facebook / Instagram)
-- Standardizes creative prompt building
-- Saves time for marketing teams and paid ads managers
+- **Multi-Language Support:** Generate prompts in English, German, French, Spanish, Italian, and Polish.
+- **Industry Specialized:** Deeply rooted in Powersports and Motorbike marketing logic.
+- **Structured JSON Output:** Produces data-rich prompts including expert roles, campaign data, and specific copy requirements.
+- **Conversion-Centric:** Focuses on hooks, mobile cutoffs (125 characters), and psychological triggers (AIDA, PAS).
+- **No Dependencies:** A single, lightweight HTML/JS file that runs directly in your browser.
 
 ---
 
@@ -20,14 +20,22 @@ This project speeds up ad creation workflows by producing ready-to-use prompt te
 
 ```json
 {
-  "campaign_goal": "Conversions",
-  "audience": "Motorcycle enthusiasts in Europe",
-  "tone": "Energetic and persuasive",
-  "ad_copy": {
-    "headline": "Upgrade Your Ride Today!",
-    "primary_text": "Discover premium motorcycle parts with fast delivery across Europe.",
-    "cta": "Shop Now"
-  }
+    "role": "Expert META Ads Strategist & Senior Performance Copywriter...",
+    "industry": "Powersports / Motorbikes",
+    "campaign_data": {
+        "brand": "THOR MX",
+        "product": "High-performance brake pads",
+        "target_audience": "Enduro enthusiasts",
+        "tones": ["Direct", "Bold"],
+        "objective": ["Sales"],
+        "offer": "Find Local Dealer Near you"
+    },
+    "requirements": [
+        "Create 3 distinct ad versions...",
+        "Primary Text: The hook MUST be in the first 125 characters...",
+        "Headline: Max 40 characters...",
+        "..."
+    ]
 }
 ```
 
@@ -35,10 +43,9 @@ This project speeds up ad creation workflows by producing ready-to-use prompt te
 
 ## 🛠 Use Cases
 
-- Paid Ads teams creating multiple ad variations
-- Prompt engineering for Meta Ads automation
-- AI-driven ad copy generation workflows
-- Marketing agencies managing large-scale campaigns
+- **Paid Ads Managers:** Quickly standardizing the creative briefing process for AI.
+- **Performance Marketers:** Scaling ad variations across multiple languages and angles.
+- **Content Creators:** Ensuring copy adheres to platform-specific constraints like character limits.
 
 ---
 
@@ -46,10 +53,9 @@ This project speeds up ad creation workflows by producing ready-to-use prompt te
 
 ```
 META-ADS-Text-AI-Prompt-Generator/
-├── META AD Generator.html   # Core prompt generator logic
-├── examples/                # Sample JSON prompt outputs
+├── META AD Generator.html   # Standalone web tool
 ├── README.md                # Project documentation
-└── package.json             # Dependencies (if applicable)
+└── LICENSE                  # License information
 ```
 
 ---
@@ -63,27 +69,35 @@ META-ADS-Text-AI-Prompt-Generator/
    cd META-ADS-Text-AI-Prompt-Generator
    ```
 
-2. **Run the generator (example)**
+2. **Run the generator**
 
-   ```bash
-   node src/generator.js
-   ```
+   Simply open `META AD Generator.html` in any modern web browser.
+
+3. **Generate your prompt**
+
+   - Select your target language.
+   - Fill in the campaign details (Brand, Product, Target, Tone, Objective).
+   - Click **"Build Ad Prompt JSON"**.
+   - Copy the result and paste it into your preferred AI chat (ChatGPT, Gemini, etc.).
 
 ---
 
+## 🔮 Future Improvements
 
-🔮 Future Improvements
+- [ ] Export directly into Meta Ads Manager CSV formats
+- [ ] Automated A/B variation builder within the UI
+- [ ] Integration with more industry-specific frameworks
+- [ ] Dark/Light mode toggle (currently specialized in high-energy dark UI)
 
-UI dashboard for marketers
+---
 
-Export directly into Meta Ads Manager formats
+## 🤝 Contributing
 
-Multi-language prompt generation
+Contributions are welcome. Feel free to open issues or submit pull requests.
 
-Automated A/B variation builder
+---
 
-🤝 Contributing
+## 📄 License
 
-Contributions are welcome.
-Feel free to open issues or submit pull requests.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
