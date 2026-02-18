@@ -11,6 +11,7 @@ The tool is specifically optimized for the **Powersports and Enthusiast industri
 - **Multi-Language Support:** Generate prompts in English, German, French, Spanish, Italian, and Polish.
 - **Industry Specialized:** Deeply rooted in Powersports and Motorbike marketing logic.
 - **Structured JSON Output:** Produces data-rich prompts including expert roles, campaign data, and specific copy requirements.
+- **Meta Ads CSV Export:** Directly export your final ad copy into a Meta Ads Manager compatible CSV format for bulk uploading.
 - **Conversion-Centric:** Focuses on hooks, mobile cutoffs (125 characters), and psychological triggers (AIDA, PAS).
 - **No Dependencies:** A single, lightweight HTML/JS file that runs directly in your browser.
 
@@ -84,7 +85,7 @@ META-ADS-Text-AI-Prompt-Generator/
 
 ## 🔮 Future Improvements
 
-- [ ] Export directly into Meta Ads Manager CSV formats
+- [x] Export directly into Meta Ads Manager CSV formats
 - [ ] Automated A/B variation builder within the UI
 - [ ] Integration with more industry-specific frameworks
 - [ ] Dark/Light mode toggle (currently specialized in high-energy dark UI)
