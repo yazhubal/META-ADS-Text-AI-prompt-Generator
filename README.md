@@ -71,35 +71,6 @@ META-ADS-Text-AI-Prompt-Generator/
 
 ---
 
-## 🔮 Future Improvements
-
-- UI dashboard for marketers
-- Export directly into Meta Ads Manager formats
-- Multi-language prompt generation
-- Automated A/B variation builder
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-Feel free to open issues or submit pull requests.
-├── html file               # Core prompt generator logic
-├── examples/           # Sample JSON prompt outputs
-├── README.md           # Project documentation
-└── package.json        # Dependencies (if applicable)
-
-🚀 Getting Started
-1. Clone the repository
-```
-git clone https://github.com/your-username/META-ADS-Text-AI-Prompt-Generator.git
-cd META-ADS-Text-AI-Prompt-Generator
-```
-
-2. Run the generator (example)
-```
-node src/generator.js
-```
 
 🔮 Future Improvements
 
