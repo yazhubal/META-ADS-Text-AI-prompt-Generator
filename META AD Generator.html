@@ -12,41 +12,66 @@
             --card: #1a1a1a;
             --text: #e0e0e0;
             --input-bg: #252525;
+            --border: #333;
         }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: var(--card); padding: 35px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.7); }
-        h1 { margin-top: 0; font-size: 24px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .chapter { 
+            background: var(--card); 
+            padding: 35px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.7); 
+            margin-bottom: 40px;
+        }
+        
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        
+        .chapter-number {
+            background: var(--accent);
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        h1 { margin-top: 0; font-size: 28px; color: #fff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; text-align: center; }
+        h2 { margin: 0; font-size: 20px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+        
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 700; margin-bottom: 8px; color: #888; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
-        input[type="text"], textarea { width: 100%; padding: 14px; border: 1px solid #444; background: var(--input-bg); color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
-        input:focus { border-color: var(--accent); outline: none; }
+        input[type="text"], textarea, select { width: 100%; padding: 14px; border: 1px solid #444; background: var(--input-bg); color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+        input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; }
+        
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px; background: #222; padding: 15px; border-radius: 6px; border: 1px solid #333; }
         .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; color: #bbb; }
+        
         button { background: var(--accent); color: white; border: none; padding: 18px; border-radius: 6px; font-size: 15px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; margin-top: 10px; transition: 0.2s; }
         button:hover { background: #fff; color: #000; }
-        #output { margin-top: 30px; display: none; }
+        
+        #output, #abOutput { margin-top: 30px; display: none; }
         .instruction { background: #252525; padding: 15px; border-radius: 6px; border-left: 4px solid var(--accent); margin-bottom: 15px; font-size: 14px; color: #bbb; }
-        pre { background: #000; color: #ff3e00; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; border: 1px solid #333; line-height: 1.5; position: relative; }
+        pre { background: #000; color: #00ff41; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; border: 1px solid #333; line-height: 1.5; }
+        
         .copy-btn {
-            display: block;
-            width: 100%;
-            margin: 20px 0 0 0;
             background: #0074d9;
-            color: #fff;
-            border: none;
-            padding: 16px;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.2s;
+            margin-top: 15px;
         }
-        .copy-btn:hover {
-            background: #005fa3;
-            color: #fff;
-        }
+        
         .language-selector {
             display: flex;
             gap: 10px;
@@ -56,6 +81,7 @@
             border-radius: 6px;
             border: 1px solid #333;
             margin-bottom: 25px;
+            justify-content: center;
         }
         .lang-btn {
             background: #333;
@@ -69,27 +95,12 @@
             text-transform: uppercase;
             width: auto;
             margin-top: 0;
-            transition: 0.2s;
-        }
-        .lang-btn:hover {
-            background: #444;
-            color: #fff;
         }
         .lang-btn.active {
             background: var(--accent);
             color: #fff;
-            border-color: var(--accent);
         }
-        select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #444;
-            background: var(--input-bg);
-            color: #fff;
-            border-radius: 6px;
-            font-size: 15px;
-            appearance: none;
-        }
+        
         .csv-ad-row {
             background: #1a1a1a;
             padding: 20px;
@@ -97,18 +108,14 @@
             margin-bottom: 20px;
             border: 1px solid #333;
         }
-        .csv-ad-row h4 {
-            margin-top: 0;
-            color: var(--accent);
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-        h3 {
-            margin-top: 0;
-            font-size: 18px;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .csv-ad-row h4 { margin-top: 0; color: var(--accent); font-size: 14px; text-transform: uppercase; }
+        
+        .ab-test-config {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -117,6 +124,7 @@
 <div class="container">
     <h1>META ADS Text Prompt Generator</h1>
 
+    <!-- Global Settings (Shared across chapters) -->
     <div class="language-selector" id="langSelector">
         <button class="lang-btn active" onclick="setLanguage('EN', this)">English</button>
         <button class="lang-btn" onclick="setLanguage('DE', this)">German</button>
@@ -126,13 +134,20 @@
         <button class="lang-btn" onclick="setLanguage('PL', this)">Polish</button>
     </div>
     
+    <!-- CHAPTER 1: JSON PROMPT BUILDER -->
+    <div class="chapter" id="chapter1">
+        <div class="chapter-header">
+            <div class="chapter-number">1</div>
+            <h2>JSON Ad Prompt Builder</h2>
+        </div>
+        
     <div class="grid">
         <div class="form-group">
-            <label>Brand  / Campaign</label>
+                <label>Brand / Campaign</label>
             <input type="text" id="brand" placeholder="e.g. THOR MX, ICON, Moose">
         </div>
         <div class="form-group">
-            <label>Target </label>
+                <label>Target Audience</label>
             <input type="text" id="target" placeholder="e.g. Enduro enthusiasts">
         </div>
     </div>
@@ -167,9 +182,69 @@
         <input type="text" id="offer" placeholder="e.g. Find Local Dealer Near you">
     </div>
 
+        <button onclick="generateJSON()">Build Ad Prompt JSON</button>
+
+        <div id="output">
+            <div class="instruction">
+                <strong>Next Step:</strong> Copy the JSON below and paste it into Gemini/ChatGPT with the instruction: <em>"Act as a senior META copywriter and create 3 ad versions based on this data."</em>
+            </div>
+            <pre id="jsonOutput"></pre>
+            <button class="copy-btn" onclick="copyToClipboard('jsonOutput')">Copy JSON Prompt</button>
+        </div>
+    </div>
+
+    <!-- CHAPTER 2: A/B TESTING VARIATION BUILDER -->
+    <div class="chapter" id="chapter2">
+        <div class="chapter-header">
+            <div class="chapter-number">2</div>
+            <h2>A/B Testing Variation Builder</h2>
+        </div>
+        
+        <p style="font-size: 14px; color: #888; margin-bottom: 20px;">Define specific variables to test (e.g., Two different hooks or two different offers) to generate a specialized A/B test prompt.</p>
+
+        <div class="ab-test-config">
+            <div class="form-group">
+                <label>Variable to Test</label>
+                <select id="abVariable">
+                    <option value="Hook / Opening Sentence">Hook / Opening Sentence</option>
+                    <option value="The Offer / CTA">The Offer / CTA</option>
+                    <option value="Psychological Angle">Psychological Angle</option>
+                    <option value="Benefit Focus">Benefit Focus</option>
+                </select>
+            </div>
     <div class="grid">
         <div class="form-group">
-            <label>Website URL (for CSV Export)</label>
+                    <label>Version A (Control)</label>
+                    <input type="text" id="abVersionA" placeholder="e.g. Stop 30% faster today">
+                </div>
+                <div class="form-group">
+                    <label>Version B (Variant)</label>
+                    <input type="text" id="abVersionB" placeholder="e.g. Never miss a braking point again">
+                </div>
+            </div>
+        </div>
+
+        <button onclick="generateABJSON()" style="background: #6f42c1;">Build A/B Test Prompt JSON</button>
+
+        <div id="abOutput">
+            <div class="instruction">
+                <strong>A/B Strategy:</strong> This prompt tells the AI to create ads specifically testing the two variations provided above.
+            </div>
+            <pre id="abJsonDisplay"></pre>
+            <button class="copy-btn" onclick="copyToClipboard('abJsonDisplay')">Copy A/B JSON Prompt</button>
+        </div>
+    </div>
+
+    <!-- CHAPTER 3: META ADS CSV EXPORT -->
+    <div class="chapter" id="chapter3">
+        <div class="chapter-header">
+            <div class="chapter-number">3</div>
+            <h2>Meta Ads CSV Export</h2>
+        </div>
+
+        <div class="grid" style="margin-bottom: 25px;">
+            <div class="form-group">
+                <label>Website URL</label>
             <input type="text" id="url" placeholder="https://www.yourbrand.com/landing-page">
         </div>
         <div class="form-group">
@@ -184,23 +259,6 @@
         </div>
     </div>
 
-    <div class="grid">
-        <button onclick="generateJSON()">Build Ad Prompt JSON</button>
-        <button onclick="showCSVSection()" style="background: #28a745;">Prepare Meta CSV</button>
-    </div>
-
-    <div id="output">
-        <div class="instruction">
-            <strong>Next Step:</strong> Copy the JSON below and paste it into Gemini/ChatGPT with the instruction: <em>"Act as a senior META copywriter and create 3 ad versions based on this data."</em>
-        </div>
-        <pre id="jsonOutput" style="left: -1px; top: 0px;"></pre>
-        <button class="copy-btn" onclick="copyPromptToClipboard()">Copy JSON Prompt</button>
-    </div>
-
-    <div id="csvSection" style="display:none; margin-top: 30px; background: #222; padding: 25px; border-radius: 12px; border: 1px solid #444;">
-        <h3>Meta Ads CSV Builder</h3>
-        <p style="font-size: 13px; color: #888; margin-bottom: 25px;">Paste the copy generated by AI below to export your Meta Ads CSV ready for import.</p>
-        
         <div class="csv-ad-row">
             <h4>Ad Version 1</h4>
             <div class="form-group"><label>Headline</label><input type="text" id="ad1_headline"></div>
@@ -222,10 +280,9 @@
             <div class="form-group"><label>Description</label><input type="text" id="ad3_desc"></div>
         </div>
 
-        <button onclick="downloadCSV()" style="background: #fff; color: #000;">Download Meta Ads CSV</button>
+        <button onclick="downloadCSV()" style="background: #28a745;">Download Meta Ads CSV</button>
     </div>
 </div>
-
 
 <script>
 let currentLanguage = 'EN';
@@ -241,6 +298,17 @@ const TRANSLATIONS = {
             "Description: Max 30 characters. Trust-builder, secondary benefit, or social proof.",
             "Style: No emojis, no clichés, no corporate jargon. Be direct, authoritative, and persuasive. Use power words relevant to powersports enthusiasts.",
             "IMPORTANT: All ad content must be written in English."
+        ],
+        ab_requirements: [
+            "This is an A/B test campaign. You MUST focus on testing a specific variable.",
+            "Variable to test: {VARIABLE}",
+            "Version A: {VERSION_A}",
+            "Version B: {VERSION_B}",
+            "Create 2 ad variations for Version A and 2 ad variations for Version B (Total 4 ads).",
+            "Ensure the tested variable is the primary difference while keeping other elements consistent for a clean test.",
+            "Primary Text: Hook in first 125 characters.",
+            "Headline: Max 40 characters.",
+            "IMPORTANT: All ad content must be written in English."
         ]
     },
     DE: {
@@ -252,6 +320,17 @@ const TRANSLATIONS = {
             "Schlagzeile: Maximal 40 Zeichen. Wirkungsvoll, nutzenorientiert und auf Dringlichkeit fokussiert.",
             "Beschreibung: Maximal 30 Zeichen. Vertrauensbildner, sekundärer Vorteil oder Social Proof.",
             "Stil: Keine Emojis, keine Klischees, kein Fachjargon. Seien Sie direkt, autoritär und überzeugend. Verwenden Sie Power-Wörter, die für Powersports-Enthusiasten relevant sind.",
+            "WICHTIG: Alle Werbeinhalte müssen in deutscher Sprache verfasst sein."
+        ],
+        ab_requirements: [
+            "Dies ist eine A/B-Test-Kampagne. Sie MÜSSEN sich auf das Testen einer bestimmten Variable konzentrieren.",
+            "Zu testende Variable: {VARIABLE}",
+            "Version A: {VERSION_A}",
+            "Version B: {VERSION_B}",
+            "Erstellen Sie 2 Anzeigenvarianten für Version A und 2 Anzeigenvarianten für Version B (insgesamt 4 Anzeigen).",
+            "Stellen Sie sicher, dass die getestete Variable der Hauptunterschied ist, während andere Elemente für einen sauberen Test konsistent bleiben.",
+            "Primärer Text: Hook in den ersten 125 Zeichen.",
+            "Schlagzeile: Maximal 40 Zeichen.",
             "WICHTIG: Alle Werbeinhalte müssen in deutscher Sprache verfasst sein."
         ]
     },
@@ -265,6 +344,17 @@ const TRANSLATIONS = {
             "Description : Max 30 caractères. Élément de réassurance, bénéfice secondaire ou preuve sociale.",
             "Style : Pas d'emojis, pas de clichés, pas de jargon d'entreprise. Soyez direct, autoritaire et persuasif. Utilisez des mots puissants pertinents pour les passionnés de sports motorisés.",
             "IMPORTANT : Tout le contenu publicitaire doit être rédigé en français."
+        ],
+        ab_requirements: [
+            "Il s'agit d'une campagne de test A/B. Vous DEVEZ vous concentrer sur le test d'une variable spécifique.",
+            "Variable à tester : {VARIABLE}",
+            "Version A : {VERSION_A}",
+            "Version B : {VERSION_B}",
+            "Créez 2 variations publicitaires pour la version A et 2 pour la version B (Total 4 publicités).",
+            "Assurez-vous que la variable testée est la principale différence tout en gardant les autres éléments cohérents pour un test propre.",
+            "Texte principal : Accroche dans les 125 premiers caractères.",
+            "Titre : Max 40 caractères.",
+            "IMPORTANT : Tout le contenu publicitaire doit être rédigé en français."
         ]
     },
     ES: {
@@ -276,6 +366,17 @@ const TRANSLATIONS = {
             "Título: Máximo 40 caracteres. De alto impacto, centrado en beneficios y en la urgencia.",
             "Descripción: Máximo 30 caracteres. Generador de confianza, beneficio secundario o prueba social.",
             "Estilo: Sin emojis, sin clichés, sin jerga corporativa. Sé directo, autoritario y persuasivo. Utiliza palabras de poder relevantes para los entusiastas de los deportes de motor.",
+            "IMPORTANTE: Todo el contenido publicitario debe estar redactado en español."
+        ],
+        ab_requirements: [
+            "Esta es una campaña de prueba A/B. DEBES enfocarte en probar una variable específica.",
+            "Variable a probar: {VARIABLE}",
+            "Versión A: {VERSION_A}",
+            "Versión B: {VERSION_B}",
+            "Crea 2 variaciones de anuncios para la Versión A y 2 para la Versión B (Total 4 anuncios).",
+            "Asegúrate de que la variable probada sea la diferencia principal mientras mantienes otros elementos consistentes para una prueba limpia.",
+            "Texto principal: Gancho en los primeros 125 caracteres.",
+            "Título: Máximo 40 caracteres.",
             "IMPORTANTE: Todo el contenido publicitario debe estar redactado en español."
         ]
     },
@@ -289,6 +390,17 @@ const TRANSLATIONS = {
             "Descrizione: Max 30 caratteri. Elemento di fiducia, beneficio secondario o prova sociale.",
             "Stile: Niente emoji, niente cliché, niente gergo aziendale. Sii diretto, autorevole e persuasivo. Usa parole forti rilevanti per gli appassionati di motori.",
             "IMPORTANTE: Tutti i contenuti pubblicitari devono essere redatti in italiano."
+        ],
+        ab_requirements: [
+            "Questa è una campagna di A/B test. DEVI concentrarti sul test di una variabile specifica.",
+            "Variabile da testare: {VARIABLE}",
+            "Versione A: {VERSION_A}",
+            "Versione B: {VERSION_B}",
+            "Crea 2 varianti di annuncio per la Versione A e 2 per la Versione B (Totale 4 annunci).",
+            "Assicurati che la variabile testata sia la differenza principale, mantenendo costanti gli altri elementi per un test pulito.",
+            "Testo principale: Gancio nei primi 125 caratteri.",
+            "Titolo: Max 40 caratteri.",
+            "IMPORTANTE: Tutti i contenuti pubblicitari devono essere redatti in italiano."
         ]
     },
     PL: {
@@ -300,6 +412,17 @@ const TRANSLATIONS = {
             "Nagłówek: Maksymalnie 40 znaków. Silnie oddziałujący, skoncentrowany na korzyściach i pilności.",
             "Opis: Maksymalnie 30 znaków. Budowanie zaufania, dodatkowa korzyść lub dowód społeczny.",
             "Styl: Bez emoji, bez kliszy, bez korporacyjnego żargonu. Bądź bezpośredni, autorytatywny i przekonujący. Używaj słów mocy istotnych dla entuzjastów sportów motorowych.",
+            "WAŻNE: Wszystkie treści reklamowe muszą być przygotowane w języku polskim."
+        ],
+        ab_requirements: [
+            "To jest kampania z testami A/B. MUSISZ skupić się na przetestowaniu konkretnej zmiennej.",
+            "Zmienna do przetestowania: {VARIABLE}",
+            "Wersja A: {VERSION_A}",
+            "Wersja B: {VERSION_B}",
+            "Stwórz 2 warianty reklam dla Wersji A i 2 warianty dla Wersji B (łącznie 4 reklamy).",
+            "Upewnij się, że testowana zmienna jest główną różnicą, podczas gdy inne elementy pozostają spójne, aby zapewnić czysty test.",
+            "Tekst główny: Haczyk w pierwszych 125 znakach.",
+            "Nagłówek: Maksymalnie 40 znaków.",
             "WAŻNE: Wszystkie treści reklamowe muszą być przygotowane w języku polskim."
         ]
     }
@@ -317,7 +440,6 @@ function getSelected(containerId) {
 }
 
 function generateJSON() {
-    document.getElementById('csvSection').style.display = 'none';
     const translation = TRANSLATIONS[currentLanguage];
     const data = {
         role: translation.role,
@@ -328,21 +450,51 @@ function generateJSON() {
             target_audience: document.getElementById('target').value,
             tones: getSelected('toneGroup'),
             objective: getSelected('objGroup'),
-            offer: document.getElementById('offer').value,
-            url: document.getElementById('url').value,
-            cta: document.getElementById('cta').value
+            offer: document.getElementById('offer').value
         },
         requirements: translation.requirements
     };
 
     document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 4);
     document.getElementById('output').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('output').offsetTop - 50, behavior: 'smooth' });
 }
 
-function showCSVSection() {
-    document.getElementById('output').style.display = 'none';
-    document.getElementById('csvSection').style.display = 'block';
-    window.scrollTo({ top: document.getElementById('csvSection').offsetTop, behavior: 'smooth' });
+function generateABJSON() {
+    const translation = TRANSLATIONS[currentLanguage];
+    const variable = document.getElementById('abVariable').value;
+    const versionA = document.getElementById('abVersionA').value;
+    const versionB = document.getElementById('abVersionB').value;
+
+    const abReqs = translation.ab_requirements.map(req => {
+        return req.replace('{VARIABLE}', variable)
+                  .replace('{VERSION_A}', versionA)
+                  .replace('{VERSION_B}', versionB);
+    });
+
+    const data = {
+        role: translation.role,
+        industry: translation.industry,
+        strategy: "A/B Testing",
+        test_setup: {
+            variable: variable,
+            version_a: versionA,
+            version_b: versionB
+        },
+        campaign_data: {
+            brand: document.getElementById('brand').value,
+            product: document.getElementById('product').value,
+            target_audience: document.getElementById('target').value,
+            tones: getSelected('toneGroup'),
+            objective: getSelected('objGroup'),
+            offer: document.getElementById('offer').value
+        },
+        requirements: abReqs
+    };
+
+    document.getElementById('abJsonDisplay').textContent = JSON.stringify(data, null, 4);
+    document.getElementById('abOutput').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('abOutput').offsetTop - 50, behavior: 'smooth' });
 }
 
 function downloadCSV() {
@@ -372,7 +524,6 @@ function downloadCSV() {
         }
     ];
 
-    // Meta CSV Headers
     const headers = [
         "Campaign Name", "Ad Set Name", "Ad Name", "Ad Status", 
         "Campaign Status", "Ad Set Status", "Headline", "Primary Text", 
@@ -404,35 +555,30 @@ function downloadCSV() {
     const link = document.createElement("a");
     const filename = `${brand.replace(/\s+/g, '_')}_MetaAds.csv`;
     
-    if (navigator.msSaveBlob) { 
-        navigator.msSaveBlob(blob, filename);
-    } else {
         link.href = URL.createObjectURL(blob);
         link.setAttribute("download", filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
-}
 
-function copyPromptToClipboard() {
-    const jsonEl = document.getElementById('jsonOutput');
-    const text = jsonEl.textContent;
+function copyToClipboard(elementId) {
+    const text = document.getElementById(elementId).textContent;
     const temp = document.createElement('textarea');
     temp.value = text;
     document.body.appendChild(temp);
     temp.select();
     document.execCommand('copy');
     document.body.removeChild(temp);
-    const btn = document.querySelector('.copy-btn');
+    
+    // Find the button that was clicked
+    const btn = event.target;
     const original = btn.textContent;
     btn.textContent = 'Copied!';
-    btn.style.background = '#005fa3';
-    btn.style.color = '#fff';
+    btn.style.background = '#28a745';
     setTimeout(() => {
         btn.textContent = original;
         btn.style.background = '#0074d9';
-        btn.style.color = '#fff';
     }, 1200);
 }
 </script>

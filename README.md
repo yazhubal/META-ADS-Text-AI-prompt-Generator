@@ -86,7 +86,7 @@ META-ADS-Text-AI-Prompt-Generator/
 ## 🔮 Future Improvements
 
 - [x] Export directly into Meta Ads Manager CSV formats
-- [ ] Automated A/B variation builder within the UI
+- [x] Automated A/B variation builder within the UI
 - [ ] Integration with more industry-specific frameworks
 - [ ] Dark/Light mode toggle (currently specialized in high-energy dark UI)
 
