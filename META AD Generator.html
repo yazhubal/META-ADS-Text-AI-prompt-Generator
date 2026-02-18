@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>META ADS  Powersport prompt generator</title>
+    <style>
+        :root {
+            --accent: #ff3e00;
+            --bg: #0f0f0f;
+            --card: #1a1a1a;
+            --text: #e0e0e0;
+            --input-bg: #252525;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: var(--card); padding: 35px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 10px 40px rgba(0,0,0,0.7); }
+        h1 { margin-top: 0; font-size: 24px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 700; margin-bottom: 8px; color: #888; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+        input[type="text"], textarea { width: 100%; padding: 14px; border: 1px solid #444; background: var(--input-bg); color: #fff; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+        input:focus { border-color: var(--accent); outline: none; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px; background: #222; padding: 15px; border-radius: 6px; border: 1px solid #333; }
+        .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; color: #bbb; }
+        button { background: var(--accent); color: white; border: none; padding: 18px; border-radius: 6px; font-size: 15px; font-weight: 800; cursor: pointer; width: 100%; text-transform: uppercase; margin-top: 10px; transition: 0.2s; }
+        button:hover { background: #fff; color: #000; }
+        #output { margin-top: 30px; display: none; }
+        .instruction { background: #252525; padding: 15px; border-radius: 6px; border-left: 4px solid var(--accent); margin-bottom: 15px; font-size: 14px; color: #bbb; }
+        pre { background: #000; color: #ff3e00; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 14px; border: 1px solid #333; line-height: 1.5; position: relative; }
+        .copy-btn {
+            display: block;
+            width: 100%;
+            margin: 20px 0 0 0;
+            background: #0074d9;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .copy-btn:hover {
+            background: #005fa3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Powersport Prompt Architect</h1>
+    
+    <div class="grid">
+        <div class="form-group">
+            <label>Brand  / Campaign</label>
+            <input type="text" id="brand" placeholder="e.g. THOR MX, ICON, Moose">
+        </div>
+        <div class="form-group">
+            <label>Target </label>
+            <input type="text" id="target" placeholder="e.g. Enduro enthusiasts">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Product / Part / Service</label>
+        <textarea id="product" rows="2" placeholder="e.g. High-performance brake pads for sportbikes"></textarea>
+    </div>
+
+    <div class="grid">
+        <div class="form-group">
+            <label>Tone of Voice</label>
+            <div class="checkbox-group" id="toneGroup">
+                <div class="checkbox-item"><input type="checkbox" value="Direct"> Direct</div>
+                <div class="checkbox-item"><input type="checkbox" value="Premium"> Premium</div>
+                <div class="checkbox-item"><input type="checkbox" value="Bold"> Bold</div>
+                <div class="checkbox-item"><input type="checkbox" value="Friendly"> Friendly</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Campaign Objective</label>
+            <div class="checkbox-group" id="objGroup">
+                <div class="checkbox-item"><input type="checkbox" value="Sales"> Sales</div>
+                <div class="checkbox-item"><input type="checkbox" value="Leads"> Leads</div>
+                <div class="checkbox-item"><input type="checkbox" value="Traffic"> Traffic</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>The Offer</label>
+        <input type="text" id="offer" placeholder="e.g. Find Local Dealer Near  you">
+    </div>
+
+    <button onclick="generateJSON()">Build Ad Prompt JSON</button>
+
+    <div id="output">
+        <div class="instruction">
+            <strong>Next Step:</strong> Copy the JSON below and paste it into Gemini/ChatGPT with the instruction: <em>"Act as a senior META copywriter and create 3 ad versions based on this data."</em>
+        </div>
+        <pre id="jsonOutput"></pre>
+        <button class="copy-btn" onclick="copyPromptToClipboard()">Copy JSON Prompt</button>
+    </div>
+</div>
+
+
+<script>
+function getSelected(containerId) {
+    const checkboxes = document.querySelectorAll(`#${containerId} input:checked`);
+    return Array.from(checkboxes).map(cb => cb.value);
+}
+
+function generateJSON() {
+    const data = {
+        role: "Senior META Performance Copywriter. You have 10+ years of experience crafting high-converting ad copy for the powersports industry. Your task is to create compelling, concise, and conversion-focused ad copy based on the provided campaign data.",
+        industry: "Powersports / Motorbikes",
+        campaign_data: {
+            brand: document.getElementById('brand').value,
+            product: document.getElementById('product').value,
+            target_audience: document.getElementById('target').value,
+            tones: getSelected('toneGroup'),
+            objective: getSelected('objGroup'),
+            offer: document.getElementById('offer').value
+        },
+        requirements: [
+            "Create 3 distinct ad versions (hook-driven, benefit-focused) based on the campaign data.",
+            "Primary Text: Keep the most important message in first 125 chars. Text can be longer. Mobile cuts off fast, so lead with the punch. Problem + Benefit + CTA.",
+            "Headline: Max 40 chars, make it benefit driven and compelling. Clear offer or payoff.",
+            "Description: Max 30 chars. Trust booster or secondary benefit. Not always needed but can help.",
+            "No emojis, no clichés, no corporate talk, no fluff. Be direct, clear, and persuasive. Focus on the unique value and offer. Use power words and emotional triggers relevant to powersports enthusiasts.",
+        ]
+    };
+
+    document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 4);
+    document.getElementById('output').style.display = 'block';
+}
+
+function copyPromptToClipboard() {
+    const jsonEl = document.getElementById('jsonOutput');
+    const text = jsonEl.textContent;
+    const temp = document.createElement('textarea');
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+    const btn = document.querySelector('.copy-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.style.background = '#005fa3';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '#0074d9';
+        btn.style.color = '#fff';
+    }, 1200);
+}
+</script>
+
+</body>
+</html>
