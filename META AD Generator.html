@@ -133,7 +133,7 @@
         <button class="lang-btn" onclick="setLanguage('IT', this)">Italian</button>
         <button class="lang-btn" onclick="setLanguage('PL', this)">Polish</button>
     </div>
-    
+
     <!-- CHAPTER 1: JSON PROMPT BUILDER -->
     <div class="chapter" id="chapter1">
         <div class="chapter-header">
@@ -141,46 +141,46 @@
             <h2>JSON Ad Prompt Builder</h2>
         </div>
         
-    <div class="grid">
-        <div class="form-group">
+        <div class="grid">
+            <div class="form-group">
                 <label>Brand / Campaign</label>
-            <input type="text" id="brand" placeholder="e.g. THOR MX, ICON, Moose">
-        </div>
-        <div class="form-group">
+                <input type="text" id="brand" placeholder="e.g. THOR MX, ICON, Moose">
+            </div>
+            <div class="form-group">
                 <label>Target Audience</label>
-            <input type="text" id="target" placeholder="e.g. Enduro enthusiasts">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>Product / Part / Service</label>
-        <textarea id="product" rows="2" placeholder="e.g. High-performance brake pads for sportbikes"></textarea>
-    </div>
-
-    <div class="grid">
-        <div class="form-group">
-            <label>Tone of Voice</label>
-            <div class="checkbox-group" id="toneGroup">
-                <div class="checkbox-item"><input type="checkbox" value="Direct"> Direct</div>
-                <div class="checkbox-item"><input type="checkbox" value="Premium"> Premium</div>
-                <div class="checkbox-item"><input type="checkbox" value="Bold"> Bold</div>
-                <div class="checkbox-item"><input type="checkbox" value="Friendly"> Friendly</div>
+                <input type="text" id="target" placeholder="e.g. Enduro enthusiasts">
             </div>
         </div>
+
         <div class="form-group">
-            <label>Campaign Objective</label>
-            <div class="checkbox-group" id="objGroup">
-                <div class="checkbox-item"><input type="checkbox" value="Sales"> Sales</div>
-                <div class="checkbox-item"><input type="checkbox" value="Leads"> Leads</div>
-                <div class="checkbox-item"><input type="checkbox" value="Traffic"> Traffic</div>
+            <label>Product / Part / Service</label>
+            <textarea id="product" rows="2" placeholder="e.g. High-performance brake pads for sportbikes"></textarea>
+        </div>
+
+        <div class="grid">
+            <div class="form-group">
+                <label>Tone of Voice</label>
+                <div class="checkbox-group" id="toneGroup">
+                    <div class="checkbox-item"><input type="checkbox" value="Direct"> Direct</div>
+                    <div class="checkbox-item"><input type="checkbox" value="Premium"> Premium</div>
+                    <div class="checkbox-item"><input type="checkbox" value="Bold"> Bold</div>
+                    <div class="checkbox-item"><input type="checkbox" value="Friendly"> Friendly</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Campaign Objective</label>
+                <div class="checkbox-group" id="objGroup">
+                    <div class="checkbox-item"><input type="checkbox" value="Sales"> Sales</div>
+                    <div class="checkbox-item"><input type="checkbox" value="Leads"> Leads</div>
+                    <div class="checkbox-item"><input type="checkbox" value="Traffic"> Traffic</div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>The Offer / CTA Description</label>
-        <input type="text" id="offer" placeholder="e.g. Find Local Dealer Near you">
-    </div>
+        <div class="form-group">
+            <label>The Offer / CTA Description</label>
+            <input type="text" id="offer" placeholder="e.g. Find Local Dealer Near you">
+        </div>
 
         <button onclick="generateJSON()">Build Ad Prompt JSON</button>
 
@@ -212,8 +212,8 @@
                     <option value="Benefit Focus">Benefit Focus</option>
                 </select>
             </div>
-    <div class="grid">
-        <div class="form-group">
+            <div class="grid">
+                <div class="form-group">
                     <label>Version A (Control)</label>
                     <input type="text" id="abVersionA" placeholder="e.g. Stop 30% faster today">
                 </div>
@@ -245,19 +245,19 @@
         <div class="grid" style="margin-bottom: 25px;">
             <div class="form-group">
                 <label>Website URL</label>
-            <input type="text" id="url" placeholder="https://www.yourbrand.com/landing-page">
+                <input type="text" id="url" placeholder="https://www.yourbrand.com/landing-page">
+            </div>
+            <div class="form-group">
+                <label>Call to Action (CTA)</label>
+                <select id="cta">
+                    <option value="LEARN_MORE">Learn More</option>
+                    <option value="SHOP_NOW">Shop Now</option>
+                    <option value="SIGN_UP">Sign Up</option>
+                    <option value="GET_OFFER">Get Offer</option>
+                    <option value="BOOK_NOW">Book Now</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Call to Action (CTA)</label>
-            <select id="cta">
-                <option value="LEARN_MORE">Learn More</option>
-                <option value="SHOP_NOW">Shop Now</option>
-                <option value="SIGN_UP">Sign Up</option>
-                <option value="GET_OFFER">Get Offer</option>
-                <option value="BOOK_NOW">Book Now</option>
-            </select>
-        </div>
-    </div>
 
         <div class="csv-ad-row">
             <h4>Ad Version 1</h4>
@@ -555,12 +555,12 @@ function downloadCSV() {
     const link = document.createElement("a");
     const filename = `${brand.replace(/\s+/g, '_')}_MetaAds.csv`;
     
-        link.href = URL.createObjectURL(blob);
-        link.setAttribute("download", filename);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 function copyToClipboard(elementId) {
     const text = document.getElementById(elementId).textContent;
