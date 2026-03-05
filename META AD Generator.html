@@ -173,6 +173,7 @@
         <button class="lang-btn" onclick="setLanguage('ES', this)">Spanish</button>
         <button class="lang-btn" onclick="setLanguage('IT', this)">Italian</button>
         <button class="lang-btn" onclick="setLanguage('PL', this)">Polish</button>
+        <button class="lang-btn" onclick="setLanguage('NL', this)">Dutch</button>
     </div>
 
     <!-- CHAPTER 1: JSON PROMPT BUILDER -->
@@ -465,6 +466,29 @@ const TRANSLATIONS = {
             "Tekst główny: Haczyk w pierwszych 125 znakach.",
             "Nagłówek: Maksymalnie 40 znaków.",
             "WAŻNE: Wszystkie treści reklamowe muszą być przygotowane w języku polskim."
+        ]
+    },
+    NL: {
+        role: "Expert in META Advertentiestrategie & Senior Performance Copywriter. U heeft meer dan 10 jaar ervaring in conversiegerichte marketing voor de motorsport- en liefhebbersindustrie. Uw specialiteit is het creëren van hoogwaardige advertentieteksten die het scrollen stoppen en aanzetten tot actie met behulp van psychologische triggers en bewezen marketingframeworks.",
+        industry: "Motorsport / Motoren",
+        requirements: [
+            "Creëer 3 verschillende advertentieversies met verschillende psychologische invalshoeken (bijv. AIDA, PAS of op voordelen gericht).",
+            "Primaire tekst: De hook MOET in de eerste 125 tekens staan om te voorkomen dat deze op mobiel wordt afgesneden. Begin met een sterk probleem, een vraag of een gewaagde uitspraak. Leid naar waarde en een duidelijke CTA.",
+            "Kop: Maximaal 40 tekens. Krachtig, gericht op voordelen en urgentie.",
+            "Beschrijving: Maximaal 30 tekens. Vertrouwensbouwer, secundair voordeel of sociaal bewijs.",
+            "Stijl: Geen emoji's, geen clichés, geen bedrijfstaal. Wees direct, gezaghebbend en overtuigend. Gebruik krachtige woorden die relevant zijn voor motorsportliefhebbers.",
+            "BELANGRIJK: Alle advertentie-inhoud moet in het Nederlands zijn geschreven."
+        ],
+        ab_requirements: [
+            "Dit is een A/B-testcampagne. U MOET zich richten op het testen van een specifieke variabele.",
+            "Te testen variabele: {VARIABLE}",
+            "Versie A: {VERSION_A}",
+            "Versie B: {VERSION_B}",
+            "Maak 2 advertentievarianten voor Versie A en 2 advertentievarianten voor Versie B (Totaal 4 advertenties).",
+            "Zorg ervoor dat de geteste variabele het belangrijkste verschil is, terwijl andere elementen consistent blijven voor een zuivere test.",
+            "Primaire tekst: Hook in de eerste 125 tekens.",
+            "Kop: Maximaal 40 tekens.",
+            "BELANGRIJK: Alle advertentie-inhoud moet in het Nederlands zijn geschreven."
         ]
     }
 };
